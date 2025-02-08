@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Boston Travel AI</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                background-color: #f4f4f4;
+            }
+            #chat-container {
+                width: 50%;
+                max-width: 600px;
+                background: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            #chat-box {
+                height: 300px;
+                overflow-y: auto;
+                border: 1px solid #ccc;
+                padding: 10px;
+                margin-bottom: 10px;
+                background: #fff;
+            }
+            #user-input {
+                width: calc(100% - 80px);
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+            #send-btn {
+                padding: 10px;
+                border: none;
+                background: blue;
+                color: white;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="chat-container">
+            <h2>Hello! Welcome! We’re here to help you explore the best of Boston, tailored to your preferences and the number of days you plan to stay. Let us know what kind of experience you’re looking for, and we’ll create a personalized itinerary just for you!</h2>
+            <div id="chat-box"></div>
+            <input type="text" id="user-input" placeholder="Ask AI about Boston...">
+            <button id="send-btn">Send</button>
+        </div>
+
+        <script type="text/javascript" src="./script.js"></script>
+
+    </body>
+</html> 
+
+<!-- hackbeanpot/hack_html/index.html -->
+<!--/Users/hyojinchae/Desktop/Hackbeanpot/hack.html-->
