@@ -1,10 +1,16 @@
-import AdventureInput from "@/components/adventureinput";
 import TravelExplorer from "@/components/background";
 import React from "react";
 import { useState } from "react";
 
+export default function Chat() {
+    const [input, setInput] = useState("")
+    // state thats an array 
+    const [chats, setChats] = useState([])
+    const [isBlocked, setIsBlocked]=useState(false)
+    console.log(input)
 
-const handleSubmit = async (userResponse: string) => {
+    
+const fetchResponse  = async (userResponse) => {
     try {
         const response = await fetch("http://localhost:8000/ai", {
             method: "POST",
@@ -22,29 +28,24 @@ const handleSubmit = async (userResponse: string) => {
 
         const responseData = await response.json();
         console.log(responseData)
+        //set state 
+        setChats((chats) => {
+            return [...chats, responseData];
+        })
+        // setIsBlocked((isBlocked)) => true;
     } catch (error) {
         console.error("Error:", error);
     }
 };
 
-
-function Chat() {
-    const [input, setInput] = useState("")
-
+    const handleSubmit = () => {
+        // setIsBlocked((isBlocked)) => true;
+        fetchResponse(input)
+    }
+    
   return (
-    <>
-            <>
-        <p>chat</p>
-        <input onChange={(e)=> {
-            setInput(e.target.value)
-        }
-        }></input>
-        <button onClick={() =>{
-            handleSubmit(input)
-        }}>hello</button>
-        </>
-   
-        <TravelExplorer />
+    <>   
+        <TravelExplorer setInput={setInput} handleSubmit={handleSubmit} chatArray={chats}/>
         </>
   );
 }
