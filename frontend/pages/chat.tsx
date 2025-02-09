@@ -1,4 +1,8 @@
+import AdventureInput from "@/components/adventureinput";
+import TravelExplorer from "@/components/background";
+import React from "react";
 import { useState } from "react";
+
 
 const handleSubmit = async (userResponse: string) => {
     try {
@@ -23,11 +27,13 @@ const handleSubmit = async (userResponse: string) => {
     }
 };
 
-export default function Chat() {
+
+function Chat() {
     const [input, setInput] = useState("")
 
-    return (
-        <>
+  return (
+    <>
+            <>
         <p>chat</p>
         <input onChange={(e)=> {
             setInput(e.target.value)
@@ -37,6 +43,10 @@ export default function Chat() {
             handleSubmit(input)
         }}>hello</button>
         </>
-
-    )
+   
+        <TravelExplorer />
+        </>
+  );
 }
+
+  
