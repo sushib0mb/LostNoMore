@@ -1,9 +1,10 @@
 from openai import OpenAI
 import json
+import os
 
 client = OpenAI(
   base_url = "https://integrate.api.nvidia.com/v1",
-  api_key = "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"
+  api_key = os.getenv("OPENAI_API_KEY")
 )
 
 completion = client.chat.completions.create(

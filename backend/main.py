@@ -8,11 +8,6 @@ import json
 load_dotenv()
 app = FastAPI()
 
-
-@app.get("/hello")
-async def root():
-    return {"message": "Hello World"}
-
 @app.post("/ai")
 def getAIResponse(userResponse: str):
     client = OpenAI(
