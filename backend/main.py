@@ -4,25 +4,37 @@ from openai import OpenAI
 from dotenv import load_dotenv
 import os
 import json
+from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
+
 
 load_dotenv()
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"], 
+    allow_headers=["*"],
+)
 
-@app.get("/hello")
-async def root():
-    return {"message": "Hello World"}
+class UserRequest(BaseModel):
+    userResponse: str
 
 @app.post("/ai")
-def getAIResponse(userResponse: str):
+def getAIResponse(request: UserRequest):
+    print(f"Received request: {request.userResponse}")
     client = OpenAI(
-    base_url = "https://integrate.api.nvidia.com/v1",
-    api_key = os.getenv("OPENAI_API_KEY")
+        base_url="https://integrate.api.nvidia.com/v1",
+        api_key=os.getenv("OPENAI_API_KEY")
     )
     
     completion = client.chat.completions.create(
     model="deepseek-ai/deepseek-r1",
-    messages=[{"role":"user","content":"Give me the an travel itinerary for travelling based on the next sentence. {userResponse}. Give me the answer in the JSON, where the keys are the days and the values are the list of strings of the names of the locations. Don't include the other text other than the JSON output."}],
+    messages=[{
+    "role": "user", 
+    "content": f"Give me a travel itinerary for travelling based on the next sentence. {request.userResponse}. Give me the answer in the JSON, where the keys are the days and the values are the list of strings of the names of the locations. Don't include the other text other than the JSON output."}],    
     temperature=0.6,
     top_p=0.7,
     max_tokens=4096,
