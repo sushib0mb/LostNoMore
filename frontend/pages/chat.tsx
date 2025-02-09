@@ -7,7 +7,6 @@ export default function Chat() {
     // state thats an array 
     const [chats, setChats] = useState([])
     // const [isBlocked, setIsBlocked]=useState(false)
-    console.log(input)
 
     
 const fetchResponse  = async (userResponse) => {
@@ -28,10 +27,12 @@ const fetchResponse  = async (userResponse) => {
 
         const responseData = await response.json();
         console.log(responseData)
-        //set state 
+        
         setChats((chats) => {
+            Object.values(chats);
             return [...chats, responseData];
         })
+        
         // setIsBlocked((isBlocked)) => true;
     } catch (error) {
         console.error("Error:", error);
@@ -40,12 +41,15 @@ const fetchResponse  = async (userResponse) => {
 
     const handleSubmit = () => {
         // setIsBlocked((isBlocked)) => true;
+        event.preventDefault()
+        if (input.trim() === "") return;
         fetchResponse(input)
+        setInput("");
     }
     
   return (
     <>   
-        <TravelExplorer setInput={setInput} handleSubmit={handleSubmit} chatArray={chats}/>
+        <TravelExplorer setInput={setInput} handleSubmit={handleSubmit} chatArray={chats} input={input}/>
         </>
   );
 }
