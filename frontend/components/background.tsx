@@ -17,12 +17,12 @@ function TravelExplorer({setInput, handleSubmit, chatArray}) {
 export default TravelExplorer;
 
 const Chats = ({ chats }: { chats: string[] }) => {
-  return (
-    console.log(chats),
-    <div>
-      {chats.map((chat, index) => (
-        <p key={index}>{chat}</p>
-      ))}
-    </div>
-  );
+  return(
+    // dispaly a list of strings
+    chats.map((chat) => {
+      return(
+        <h1>chat</h1>
+      )
+    })
+  )
 }

@@ -6,7 +6,7 @@ export default function Chat() {
     const [input, setInput] = useState("")
     // state thats an array 
     const [chats, setChats] = useState([])
-    const [isBlocked, setIsBlocked]=useState(false)
+    // const [isBlocked, setIsBlocked]=useState(false)
     console.log(input)
 
     

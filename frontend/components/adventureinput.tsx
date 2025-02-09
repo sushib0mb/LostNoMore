@@ -15,7 +15,7 @@ function AdventureInput({setInput, handleSubmit}) {
         }
         }
       />
-      <button onClick={handleSubmit}>HELP</button>
+      <button onClick={handleSubmit}> here </button>
     </form>
   );
 }
